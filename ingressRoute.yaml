@@ -1,0 +1,14 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ansible-aws
+  namespace: ansible-awx
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`ansible.gwynbliedd.com`)
+      kind: Rule
+      services:
+        - name: awx-server-service
+          port: 80
